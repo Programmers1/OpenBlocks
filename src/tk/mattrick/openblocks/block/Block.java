@@ -101,7 +101,7 @@ public class Block {
 	}
 
 	public int getY() {
-		return this.z;
+		return this.y;
 	}
 
 	public int getZ() {

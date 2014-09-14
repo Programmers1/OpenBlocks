@@ -1,6 +1,10 @@
 package tk.mattrick.openblocks.blob;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import tk.mattrick.openblocks.block.Block;
+import tk.mattrick.openblocks.entity.Entity;
 import tk.mattrick.openblocks.location.World;
 
 /**
@@ -11,6 +15,7 @@ import tk.mattrick.openblocks.location.World;
 public class Blob {
 
 	private Block[][][] blocks = new Block[16][16][16];
+	private List<Entity> entities = new ArrayList<Entity>();
 	private int x, y, z;
 	private World world;
 
@@ -49,4 +54,7 @@ public class Blob {
 		return blocks[x][y][z];
 	}
 
+	public List<Entity> getEntities() {
+		return entities;
+	}
 }

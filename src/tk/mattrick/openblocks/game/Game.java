@@ -6,6 +6,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 import tk.mattrick.openblocks.blob.Blob;
 import tk.mattrick.openblocks.blob.BlobGenerator;
+import tk.mattrick.openblocks.block.Block;
 import tk.mattrick.openblocks.block.BlockAir;
 import tk.mattrick.openblocks.block.BlockManager;
 import tk.mattrick.openblocks.block.BlockStone;
@@ -26,6 +27,7 @@ public class Game {
 		try {
 			Display.setDisplayMode(new DisplayMode(640,480));
 			Display.create();
+			Display.setTitle(Config.long_version);
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
@@ -34,7 +36,11 @@ public class Game {
 		BlockManager.getInstance().addBlock(new BlockAir()).addBlock(new BlockStone());
 
 		World w = new World("world");
-		Blob b = new Blob(0, 0, 0, w);
+		Blob blob = new Blob(0, 0, 0, w);
+
+		Block block = blob.getBlockAt(2, 10, 1);
+
+		System.out.println(block.getType() + " at x: " + block.getX() + " y: " + block.getY() + " z: " + block.getZ());
 
 
 		while (!Display.isCloseRequested()) {

@@ -8,12 +8,18 @@ import tk.mattrick.openblocks.material.MaterialManager;
  *
  */
 
-public class BlockStone extends BlockType{
+public class BlockStone implements BlockType {
 
 	private static Material mat = MaterialManager.registerMaterial("block_stone");
 
-	public static Material getMaterial() {
+	@Override
+	public Material getMaterial() {
 		return mat;
+	}
+
+	@Override
+	public boolean isSolid() {
+		return true;
 	}
 
 }

@@ -8,12 +8,16 @@ import tk.mattrick.openblocks.material.MaterialManager;
  *
  */
 
-public class BlockAir extends BlockType {
+public class BlockAir implements BlockType {
 
 	private static Material mat = MaterialManager.registerMaterial("block_air");
 
-	public static Material getMaterial() {
+	public Material getMaterial() {
 		return mat;
+	}
+
+	public boolean isSolid() {
+		return false;
 	}
 
 }
