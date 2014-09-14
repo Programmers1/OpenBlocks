@@ -45,4 +45,8 @@ public class Blob {
 		return blocks;
 	}
 
+	public Block getBlockAt(int x, int y, int z) {
+		return blocks[x][y][z];
+	}
+
 }

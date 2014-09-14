@@ -4,8 +4,12 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import tk.mattrick.openblocks.blob.Blob;
 import tk.mattrick.openblocks.blob.BlobGenerator;
+import tk.mattrick.openblocks.block.BlockAir;
 import tk.mattrick.openblocks.block.BlockManager;
+import tk.mattrick.openblocks.block.BlockStone;
+import tk.mattrick.openblocks.location.World;
 
 /**
  * @author mattrick
@@ -25,6 +29,13 @@ public class Game {
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
+
+		//Register Blocks
+		BlockManager.getInstance().addBlock(new BlockAir()).addBlock(new BlockStone());
+
+		World w = new World("world");
+		Blob b = new Blob(0, 0, 0, w);
+
 
 		while (!Display.isCloseRequested()) {
 

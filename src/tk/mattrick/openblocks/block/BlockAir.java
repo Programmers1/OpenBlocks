@@ -8,7 +8,7 @@ import tk.mattrick.openblocks.material.MaterialManager;
  *
  */
 
-public class BlockAir extends BlockType{
+public class BlockAir extends BlockType {
 
 	private static Material mat = MaterialManager.registerMaterial("block_air");
 

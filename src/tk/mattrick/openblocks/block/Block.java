@@ -28,7 +28,7 @@ public class Block {
 		this.y = y;
 		this.z = z;
 
-		BlockManager.getInstance().addBlock(this);
+		BlockManager.getInstance().addBlock(type);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class Block {
 		this.y = (int) p.getY();
 		this.z = (int) p.getZ();
 
-		BlockManager.getInstance().addBlock(this);
+		BlockManager.getInstance().addBlock(type);
 	}
 
 	/**

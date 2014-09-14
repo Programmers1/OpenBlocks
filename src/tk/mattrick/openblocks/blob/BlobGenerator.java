@@ -37,10 +37,10 @@ public class BlobGenerator {
 		Block[][][] bl = new Block[16][16][16];
 		List<BlockType> blocks = BlockManager.getInstance().getBlocks();
 
-		for (int x = 0; x <= 16; x++) {
-			for(int y = 0; y <= 16; y++) {
-				for(int z = 0; z <= 16; z++) {
-					bl[x][y][z] = new Block(blocks.get(rand.nextInt()), b.getX() + x, b.getY() + y, b.getZ() + z);
+		for (int x = 0; x < 16; x++) {
+			for(int y = 0; y < 16; y++) {
+				for(int z = 0; z < 16; z++) {
+					bl[x][y][z] = new Block(blocks.get(rand.nextInt(blocks.size())), x, y, z);
 				}
 			}
 		}

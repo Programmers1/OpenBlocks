@@ -15,7 +15,7 @@ public class BlockManager {
 	private List<BlockType> blocks = new ArrayList<BlockType>();
 
 	public BlockManager() {
-		if (instance != null) {
+		if (instance == null) {
 			instance = this;
 		}
 	}
@@ -24,10 +24,11 @@ public class BlockManager {
 		return instance;
 	}
 
-	public void addBlock (Block b) {
+	public BlockManager addBlock (BlockType b) {
 		if (!blocks.contains(b)) {
-			blocks.add(b.getType());
+			blocks.add(b);
 		}
+		return instance;
 	}
 
 	public List<BlockType> getBlocks() {
