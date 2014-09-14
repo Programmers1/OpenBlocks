@@ -1,6 +1,9 @@
 # OpenBlocks
 OpenBlocks is a free, open source voxel engine written in Java. We aim to allow the community to contribute their ideas and skills to OpenBlocks.
 
+## Contact
+I am on IRC chat most of the time, feel free to join [#OpenBlocks](http://webchat.esper.net/?nick=&channels=OpenBlocks). (Or join irc.esper.net on channel #OpenBlocks in your IRC client)
+
 ## Contributing
 
 See [CONTRIBUTING.md](https://github.com/mattrick16/OpenBlocks/blob/master/CONTRIBUTING.md) for details.
