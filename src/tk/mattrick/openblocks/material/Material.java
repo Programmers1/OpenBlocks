@@ -2,8 +2,6 @@ package tk.mattrick.openblocks.material;
 
 import org.newdawn.slick.opengl.Texture;
 
-import tk.mattrick.openblocks.manager.MaterialManager;
-
 
 /**
  * @author mattrick

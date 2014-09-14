@@ -1,4 +1,4 @@
-package tk.mattrick.openblocks.manager;
+package tk.mattrick.openblocks.material;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +9,6 @@ import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import tk.mattrick.openblocks.game.Config;
-import tk.mattrick.openblocks.material.Material;
 
 /**
  * @author mattrick

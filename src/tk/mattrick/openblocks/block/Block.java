@@ -4,37 +4,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 import tk.mattrick.openblocks.location.Point;
-import tk.mattrick.openblocks.material.Material;
 
 /**
  * @author mattrick
  *
  */
 
-/**
- * @author mattrick
- *
- */
 public class Block {
 
-	Material mat;
-	String name;
+	BlockType type;
 	Map<String, String> data = new HashMap<String, String>();
 	int x, y, z;
 
 	/**
 	 * @param mat Material for the block to use
-	 * @param name Name for the block to use
 	 * @param x X position of Block
 	 * @param y Y position of Block
 	 * @param z Z position of Block
 	 */
-	public Block (Material mat, String name, int x, int y, int z) {
-		this.mat = mat;
-		this.name = name;
+	public Block (BlockType type, int x, int y, int z) {
+		this.type = type;
 		this.x = x;
 		this.y = y;
 		this.z = z;
+
+		BlockManager.getInstance().addBlock(this);
 	}
 
 	/**
@@ -42,26 +36,20 @@ public class Block {
 	 * @param name Name for the block to use
 	 * @param p Point where block should be placed
 	 */
-	public Block (Material mat, String name, Point p) {
-		this.mat = mat;
-		this.name = name;
+	public Block (BlockType type, Point p) {
+		this.type = type;
 		this.x = (int) p.getX();
 		this.y = (int) p.getY();
 		this.z = (int) p.getZ();
+
+		BlockManager.getInstance().addBlock(this);
 	}
 
 	/**
 	 * @return Material used by the Block
 	 */
-	public Material getMaterial() {
-		return mat;
-	}
-
-	/**
-	 * @return Name used by the Block
-	 */
-	public String getName() {
-		return name;
+	public BlockType getType() {
+		return type;
 	}
 
 	/**
