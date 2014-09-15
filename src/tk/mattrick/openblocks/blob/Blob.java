@@ -18,12 +18,14 @@ public class Blob {
 	private List<Entity> entities = new ArrayList<Entity>();
 	private int x, y, z;
 	private World world;
+	boolean needs_update;
 
 	public Blob(int x, int y, int z, World world) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
 		this.world = world;
+		this.needs_update = true;
 
 		world.addBlob(this);
 
@@ -59,6 +61,6 @@ public class Blob {
 	}
 
 	public void update() {
-
+		needs_update = true;
 	}
 }

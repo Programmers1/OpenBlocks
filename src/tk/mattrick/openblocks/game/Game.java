@@ -6,6 +6,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 import tk.mattrick.openblocks.blob.Blob;
 import tk.mattrick.openblocks.blob.BlobGenerator;
+import tk.mattrick.openblocks.blob.BlobRenderer;
 import tk.mattrick.openblocks.block.Block;
 import tk.mattrick.openblocks.block.BlockAir;
 import tk.mattrick.openblocks.block.BlockManager;
@@ -48,7 +49,7 @@ public class Game {
 
 		while (!Display.isCloseRequested()) {
 
-			Render.render();
+			BlobRenderer.renderBlob(blob);
 			Display.update();
 			Display.sync(60);
 		}
