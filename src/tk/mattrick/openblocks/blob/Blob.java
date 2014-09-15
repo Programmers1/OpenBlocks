@@ -57,4 +57,8 @@ public class Blob {
 	public List<Entity> getEntities() {
 		return entities;
 	}
+
+	public void update() {
+
+	}
 }

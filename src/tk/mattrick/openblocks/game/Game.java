@@ -11,6 +11,7 @@ import tk.mattrick.openblocks.block.BlockAir;
 import tk.mattrick.openblocks.block.BlockManager;
 import tk.mattrick.openblocks.block.BlockStone;
 import tk.mattrick.openblocks.location.World;
+import tk.mattrick.openblocks.render.Render;
 
 /**
  * @author mattrick
@@ -32,6 +33,8 @@ public class Game {
 			e.printStackTrace();
 		}
 
+		Render.initGL();
+
 		//Register Blocks
 		BlockManager.getInstance().addBlock(new BlockAir()).addBlock(new BlockStone());
 
@@ -45,7 +48,9 @@ public class Game {
 
 		while (!Display.isCloseRequested()) {
 
+			Render.render();
 			Display.update();
+			Display.sync(60);
 		}
 
 	}

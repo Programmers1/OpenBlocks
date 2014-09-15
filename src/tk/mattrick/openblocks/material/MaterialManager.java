@@ -53,4 +53,13 @@ public class MaterialManager {
 		return material;
 	}
 
+	public static Material getMaterial(String name) {
+		for (Material mat : materials) {
+			if (mat.getName() == name) {
+				return mat;
+			}
+		}
+		return null;
+	}
+
 }
