@@ -1,9 +1,13 @@
 package tk.mattrick.openblocks.game;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.Sys;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import static org.lwjgl.opengl.GL11.*;
 import tk.mattrick.openblocks.blob.Blob;
 import tk.mattrick.openblocks.blob.BlobGenerator;
 import tk.mattrick.openblocks.blob.BlobRenderer;
@@ -42,14 +46,12 @@ public class Game {
 		World w = new World("world");
 		Blob blob = new Blob(0, 0, 0, w);
 
-		Block block = blob.getBlockAt(2, 10, 1);
-
-		System.out.println(block.getType() + " at x: " + block.getX() + " y: " + block.getY() + " z: " + block.getZ());
-
-
 		while (!Display.isCloseRequested()) {
 
-			BlobRenderer.renderBlob(blob);
+			//BlobRenderer.renderBlob(blob);
+
+			Render.renderTest();
+
 			Display.update();
 			Display.sync(60);
 		}

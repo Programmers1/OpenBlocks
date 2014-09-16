@@ -1,19 +1,6 @@
 package tk.mattrick.openblocks.blob;
 
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
-import static org.lwjgl.opengl.GL11.GL_QUADS;
-import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glClear;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glLoadIdentity;
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTexCoord2f;
-import static org.lwjgl.opengl.GL11.glTranslatef;
-import static org.lwjgl.opengl.GL11.glVertex3f;
-
-import org.newdawn.slick.opengl.Texture;
-
+import static org.lwjgl.opengl.GL11.*;
 import tk.mattrick.openblocks.block.Block;
 
 /**
@@ -23,95 +10,95 @@ import tk.mattrick.openblocks.block.Block;
 
 public class BlobRenderer {
 
+	public static int index = glGenLists(1);
+
 	public static void renderBlob(Blob blob) {
 		if (blob.needs_update) {
+
+			glNewList(index, GL_COMPILE);
+
 			for (Block[][] b1 : blob.getBlocks()) {
 				for (Block[] b2 : b1) {
 					for (Block b3 : b2) {
+
 						glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-						glLoadIdentity();
 
-						glTranslatef(0f,0.0f,-7f);
-						glRotatef(45f,0.0f,1.0f,0.0f);
-						//glColor3f(0.5f,0.5f,1.0f);
+						glTranslatef(b3.getX(), b3.getY(), b3.getZ()); // Translate to draw the cube.
+						glBegin(GL_QUADS); // Start to draw the quad.
+						glNormal3f(0f, 0f, 1f);
+						glTexCoord2f(0f, 1f);
+						glVertex3f(1f, 0f, 0f);
+						glTexCoord2f(1f, 1f);
+						glVertex3f(0f, 0f, 0f);
+						glTexCoord2f(1f, 0f);
+						glVertex3f(0f, 1f, 0f);
+						glTexCoord2f(0f, 0f);
+						glVertex3f(1f, 1f, 0f);
 
-						Texture tex = b3.getType().getMaterial().getTexture();
+						//back face
+						glNormal3f(0f, 0f, -1f);
+						glTexCoord2f(0f, 1f);
+						glVertex3f(0f, 0f, 1f);
+						glTexCoord2f(1f, 1f);
+						glVertex3f(1f, 0f, 1f);
+						glTexCoord2f(1f, 0f);
+						glVertex3f(1f, 1f, 1f);
+						glTexCoord2f(0f, 0f);
+						glVertex3f(0f, 1f, 1f);
 
-						glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-						glLoadIdentity();
+						b3.getType().getMaterial().getTexture().bind(); // top texture
+						//top face
+						glNormal3f(0f, -1f, 0f);
+						glTexCoord2f(0f, 1f);
+						glVertex3f(1f, 1f, 0f);
+						glTexCoord2f(1f, 1f);
+						glVertex3f(0f, 1f, 0f);
+						glTexCoord2f(1f, 0f);
+						glVertex3f(0f, 1f, 1f);
+						glTexCoord2f(0f, 0f);
+						glVertex3f(1f, 1f, 1f);
 
-						glTranslatef(0.0f,0.0f,-5.0f); // Move Into The Screen 5 Units
+						//bottom face
+						glNormal3f(0f, 1f, 0f);
+						glTexCoord2f(0f, 1f);
+						glVertex3f(1f, 0f, 1f);
+						glTexCoord2f(1f, 1f);
+						glVertex3f(0f, 0f, 1f);
+						glTexCoord2f(1f, 0f);
+						glVertex3f(0f, 0f, 0f);
+						glTexCoord2f(0f, 0f);
+						glVertex3f(1f, 0f, 0f);
 
-						tex.bind(); // or glBind(texture.getTextureID());
+						b3.getType().getMaterial().getTexture().bind(); // top texture
+						//left face
+						glNormal3f(-1f, 0f, 0f);
+						glTexCoord2f(0f, 1f);
+						glVertex3f(1f, 0f, 1f);
+						glTexCoord2f(1f, 1f);
+						glVertex3f(1f, 0f, 0f);
+						glTexCoord2f(1f, 0f);
+						glVertex3f(1f, 1f, 0f);
+						glTexCoord2f(0f, 0f);
+						glVertex3f(1f, 1f, 1f);
 
-						glBegin(GL_QUADS);
+						//right face
+						glNormal3f(1f, 0f, 0f);
+						glTexCoord2f(0f, 1f);
+						glVertex3f(0f, 0f, 0f);
+						glTexCoord2f(1f, 1f);
+						glVertex3f(0f, 0f, 1f);
+						glTexCoord2f(1f, 0f);
+						glVertex3f(0f, 1f, 1f);
+						glTexCoord2f(0f, 0f);
+						glVertex3f(0f, 1f, 0f);
+						glEnd(); // Finishes rendering.
 
-						// Front Face
-						glTexCoord2f(0.0f, 0.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() - 1.0f, b3.getZ() + 1.0f); // Bottom Left Of The Texture and Quad
-						glTexCoord2f(1.0f, 0.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() - 1.0f, b3.getZ() + 1.0f); // Bottom Right Of The Texture and Quad
-						glTexCoord2f(1.0f, 1.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() + 1.0f, b3.getZ() + 1.0f); // Top Right Of The Texture and Quad
-						glTexCoord2f(0.0f, 1.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() + 1.0f, b3.getZ() + 1.0f); // Top Left Of The Texture and Quad
-
-						// Back Face
-						glTexCoord2f(1.0f, 0.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() - 1.0f, b3.getZ() - 1.0f); // Bottom Right Of The Texture and Quad
-						glTexCoord2f(1.0f, 1.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() + 1.0f, b3.getZ() - 1.0f); // Top Right Of The Texture and Quad
-						glTexCoord2f(0.0f, 1.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() + 1.0f, b3.getZ() - 1.0f); // Top Left Of The Texture and Quad
-						glTexCoord2f(0.0f, 0.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() - 1.0f, b3.getZ() - 1.0f); // Bottom Left Of The Texture and Quad
-
-						// Top Face
-						glTexCoord2f(0.0f, 1.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() + 1.0f, b3.getZ() - 1.0f); // Top Left Of The Texture and Quad
-						glTexCoord2f(0.0f, 0.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() + 1.0f, b3.getZ() + 1.0f); // Bottom Left Of The Texture and Quad
-						glTexCoord2f(1.0f, 0.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() + 1.0f, b3.getZ() + 1.0f); // Bottom Right Of The Texture and Quad
-						glTexCoord2f(1.0f, 1.0f);
-						glVertex3f( b3.getX() + 1.0f, b3.getY() + 1.0f, b3.getZ() - 1.0f); // Top Right Of The Texture and Quad
-
-						// Bottom Face
-						glTexCoord2f(1.0f, 1.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() - 1.0f, b3.getZ() - 1.0f); // Top Right Of The Texture and Quad
-						glTexCoord2f(0.0f, 1.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() - 1.0f, b3.getZ() - 1.0f); // Top Left Of The Texture and Quad
-						glTexCoord2f(0.0f, 0.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() - 1.0f, b3.getZ() + 1.0f); // Bottom Left Of The Texture and Quad
-						glTexCoord2f(1.0f, 0.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() - 1.0f, b3.getZ() + 1.0f); // Bottom Right Of The Texture and Quad
-
-						// Right face
-						glTexCoord2f(1.0f, 0.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() - 1.0f, b3.getZ() - 1.0f); // Bottom Right Of The Texture and Quad
-						glTexCoord2f(1.0f, 1.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() + 1.0f, b3.getZ() - 1.0f); // Top Right Of The Texture and Quad
-						glTexCoord2f(0.0f, 1.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() + 1.0f, b3.getZ() + 1.0f); // Top Left Of The Texture and Quad
-						glTexCoord2f(0.0f, 0.0f);
-						glVertex3f(b3.getX() + 1.0f, b3.getY() - 1.0f, b3.getZ() + 1.0f); // Bottom Left Of The Texture and Quad
-
-						// Left Face
-						glTexCoord2f(0.0f, 0.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() - 1.0f, b3.getZ() - 1.0f); // Bottom Left Of The Texture and Quad
-						glTexCoord2f(1.0f, 0.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() - 1.0f, b3.getZ() + 1.0f); // Bottom Right Of The Texture and Quad
-						glTexCoord2f(1.0f, 1.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() + 1.0f, b3.getZ() + 1.0f); // Top Right Of The Texture and Quad
-						glTexCoord2f(0.0f, 1.0f);
-						glVertex3f(b3.getX() - 1.0f, b3.getY() + 1.0f, b3.getZ() - 1.0f); // Top Left Of The Texture and Quad
-						glEnd();
-
-						blob.needs_update = false;
 					}
+
 				}
 			}
+			glEndList();
 		}
+		glCallList(index);
 	}
-
 }
