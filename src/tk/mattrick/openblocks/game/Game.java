@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import tk.mattrick.openblocks.blob.Blob;
 import tk.mattrick.openblocks.blob.BlobGenerator;
+import tk.mattrick.openblocks.blob.BlobRenderer;
 import tk.mattrick.openblocks.block.BlockAir;
 import tk.mattrick.openblocks.block.BlockManager;
 import tk.mattrick.openblocks.block.BlockStone;
@@ -29,6 +30,9 @@ public class Game {
 
 	public Game() {
 
+		new BlockManager();
+		new BlobGenerator();
+
 		Camera camera = new Camera(0, 0, 0);
 
 		try {
@@ -41,6 +45,12 @@ public class Game {
 
 		Render.initGL(640, 480);
 
+		BlockManager.getInstance().addBlock(new BlockAir()).addBlock(new BlockStone());
+
+		World w = new World("world");
+		Blob blob = new Blob(0, 0, 0, w);
+
+		//TODO Move all camera stuff to Camera.java
 		float dx        = 0.0f;
 		float dy        = 0.0f;
 		float dt        = 0.0f;
@@ -89,6 +99,9 @@ public class Game {
 			GL11.glLoadIdentity();
 
 			camera.lookThrough();
+
+			//TODO SLOW AS HECK
+			//BlobRenderer.renderBlob(blob);
 
 			Render.renderTest();
 

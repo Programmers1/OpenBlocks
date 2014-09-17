@@ -28,7 +28,7 @@ public class Render {
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);                                    // Enable Texture Mapping ( NEW )
 		GL11.glShadeModel(GL11.GL_SMOOTH);
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		GL11.glClearColor(0.40f, 0.52f, 1.0f, 0.0f);
 		GL11.glClearDepth(1.0f);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthFunc(GL11.GL_LEQUAL);
@@ -45,7 +45,7 @@ public class Render {
 	public static void renderCube() {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT|GL11.GL_DEPTH_BUFFER_BIT);
 
-		GL11.glTranslatef(0.0f,0.0f,-5.0f);                              // Move Into The Screen 5 Units
+		GL11.glTranslatef(0.0f,0.0f,0.0f);                              // Move Into The Screen 5 Units
 
 		GL11.glBegin(GL11.GL_QUADS);
 		//HERE IS WHERE YOU BIND A TEXTURE
