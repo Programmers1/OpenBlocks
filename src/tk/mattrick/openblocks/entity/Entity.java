@@ -5,6 +5,6 @@ package tk.mattrick.openblocks.entity;
  *
  */
 
-public class Entity {
+public class Entity extends Metadatable{
 
 }
