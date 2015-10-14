@@ -8,4 +8,7 @@ package tk.mattrick.openblock.entity;
        
        
        public List<MetadataValue> getMetadata(String metadataKey);
+      
+          public boolean hasMetadata(String metadataKey);
+     
       }
