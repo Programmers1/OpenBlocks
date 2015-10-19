@@ -8,7 +8,7 @@ public interface ChukSnapshot {
     
     int getZ();
     double getRawBiomeTemperature(int x, int z); 
-   /** 
+    
      String getWorldName(); 
 
 
